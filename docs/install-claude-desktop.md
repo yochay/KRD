@@ -11,7 +11,7 @@ Without both, sign-in fails.
 
 ## Install
 
-1. Get `klas-report-mcp.mcpb` from Yochay (Phase 4c will host it on KRD Releases).
+1. Download [`klas-report-mcp.mcpb`](https://github.com/yochay/KRD/releases/latest/download/klas-report-mcp.mcpb) (always the latest release).
 2. Open Claude Desktop → **Settings → Extensions**.
 3. Drag `klas-report-mcp.mcpb` onto the window (or double-click the file).
 4. Confirm install, then **fully restart** Claude Desktop.
