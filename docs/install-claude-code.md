@@ -4,8 +4,8 @@ The `/klas-report` skill ships as a Claude Code plugin.
 
 ## Prerequisites (one-time, done by Yochay)
 
-1. Yochay adds your Gmail as a Test User on the `KLAS Reports` GCP project.
-2. Yochay shares the KLAS Google Sheet with that Gmail (Viewer).
+1. Yochay adds your Gmail to project.
+2. Yochay shares Viewer to data.
 
 Without both, OAuth login will fail.
 
