@@ -2,28 +2,55 @@
   "manifest_version": "0.3",
   "name": "klas-report",
   "display_name": "KLAS Reports",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Generate KLAS Member, Deal, and Tax reports (.xlsx) from the live Google Sheet, and answer ad-hoc financial questions.",
-  "author": { "name": "Yochay Kiriaty" },
+  "author": {
+    "name": "Yochay Kiriaty"
+  },
   "server": {
     "type": "node",
     "entry_point": "index.js",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/index.js"]
+      "args": [
+        "${__dirname}/index.js"
+      ]
     }
   },
   "tools": [
-    { "name": "member_report", "description": "Generate a KLAS Member report (.xlsx)." },
-    { "name": "deal_report", "description": "Generate a KLAS Deal report (.xlsx)." },
-    { "name": "tax_report", "description": "Generate a KLAS tax-withholding report (.xlsx)." },
-    { "name": "klas_context", "description": "Snapshot of all Members and Deals for ad-hoc Q&A." },
-    { "name": "auth_status", "description": "Show the authenticated Google account." },
-    { "name": "auth_login", "description": "Start Google sign-in (opens a browser)." }
+    {
+      "name": "member_report",
+      "description": "Generate a KLAS Member report (.xlsx)."
+    },
+    {
+      "name": "deal_report",
+      "description": "Generate a KLAS Deal report (.xlsx)."
+    },
+    {
+      "name": "tax_report",
+      "description": "Generate a KLAS tax-withholding report (.xlsx)."
+    },
+    {
+      "name": "klas_context",
+      "description": "Snapshot of all Members and Deals for ad-hoc Q&A."
+    },
+    {
+      "name": "auth_status",
+      "description": "Show the authenticated Google account."
+    },
+    {
+      "name": "auth_login",
+      "description": "Start Google sign-in (opens a browser)."
+    }
   ],
   "compatibility": {
     "claude_desktop": ">=0.10.0",
-    "platforms": ["darwin", "win32"],
-    "runtimes": { "node": ">=18.0.0" }
+    "platforms": [
+      "darwin",
+      "win32"
+    ],
+    "runtimes": {
+      "node": ">=18.0.0"
+    }
   }
 }
