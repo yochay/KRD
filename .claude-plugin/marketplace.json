@@ -1,0 +1,13 @@
+{
+  "name": "KRD",
+  "owner": {
+    "name": "Yochay Kiriaty"
+  },
+  "plugins": [
+    {
+      "name": "klas-report",
+      "source": "./plugins/klas-report",
+      "description": "generate reports"
+    }
+  ]
+}

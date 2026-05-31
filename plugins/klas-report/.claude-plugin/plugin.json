@@ -1,0 +1,5 @@
+{
+  "name": "klas-report",
+  "description": "Generate a Member, Deal, or Tax report (.xlsx) from the live KLAS Google Sheet, or load a pre-computed snapshot for ad-hoc Q&A.",
+  "author": { "name": "Yochay Kiriaty" }
+}
