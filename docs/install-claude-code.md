@@ -36,6 +36,7 @@ The first report triggers a one-time Google OAuth login:
 /klas-report member "name"
 /klas-report deal "name"
 /klas-report tax
+/klas-report active-deals [year]   # defaults to the current year
 /klas-report context     # ad-hoc Q&A, no file
 ```
 

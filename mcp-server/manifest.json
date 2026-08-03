@@ -2,8 +2,8 @@
   "manifest_version": "0.3",
   "name": "klas-report",
   "display_name": "KLAS Reports",
-  "version": "3.0.3",
-  "description": "Generate KLAS Member, Deal, and Tax reports (.xlsx) from the live Google Sheet, and answer ad-hoc financial questions.",
+  "version": "3.1.0",
+  "description": "Generate KLAS Member, Deal, Tax, and Active Deals reports (.xlsx) from the live Google Sheet, and answer ad-hoc financial questions.",
   "author": {
     "name": "Yochay Kiriaty"
   },
@@ -29,6 +29,10 @@
     {
       "name": "tax_report",
       "description": "Generate a KLAS tax-withholding report (.xlsx)."
+    },
+    {
+      "name": "active_deals_report",
+      "description": "Generate a KLAS Active Deals report (.xlsx) for one calendar year, with per-investor distributions and Non-US tax withholding."
     },
     {
       "name": "klas_context",

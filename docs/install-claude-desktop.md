@@ -26,6 +26,7 @@ Without both, sign-in fails.
 ## Tools
 
 - `member_report` (name) · `deal_report` (name) · `tax_report` (optional name)
+- `active_deals_report` (optional year, defaults to current year)
 - `klas_context` — ad-hoc Q&A, no file
 - `auth_status` · `auth_login`
 

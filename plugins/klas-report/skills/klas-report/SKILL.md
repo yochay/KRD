@@ -1,6 +1,6 @@
 ---
 name: klas-report
-description: Generate a Member, Deal, or Tax report (.xlsx) from the live KLAS Google Sheet, or load a pre-computed snapshot for ad-hoc Q&A. Use when the user types /klas-report or asks for a member report, deal report, tax report, KLAS report, or asks any financial question about KLAS Members or Deals. Invoke as `/klas-report member "<name>"`, `/klas-report deal "<name>"`, `/klas-report tax ["<name>"]`, or `/klas-report context`.
+description: Generate a Member, Deal, Tax, or Active Deals report (.xlsx) from the live KLAS Google Sheet, or load a pre-computed snapshot for ad-hoc Q&A. Use when the user types /klas-report or asks for a member report, deal report, tax report, active deals report, KLAS report, or asks any financial question about KLAS Members or Deals. Invoke as `/klas-report member "<name>"`, `/klas-report deal "<name>"`, `/klas-report tax ["<name>"]`, `/klas-report active-deals [year]`, or `/klas-report context`.
 ---
 
 # klas-report
@@ -19,6 +19,7 @@ The skill delegates to the bundled CLI at `${CLAUDE_PLUGIN_ROOT}/dist/cli.js`. R
 | Deal report | `/klas-report deal "<name>"` | Writes `Deal_<Name>_<date>.xlsx` |
 | Tax report (LLC-wide) | `/klas-report tax` | Writes `Tax_Report_<date>.xlsx` — 4 tabs: Summary, By Member, By Quarter, By Deal |
 | Tax report (per member) | `/klas-report tax "<name>"` | Writes `Tax_Report_<Name>_<date>.xlsx` — single sheet for one Non-US member |
+| Active Deals report | `/klas-report active-deals [year]` | Writes `Active_Deals_<year>_<date>.xlsx` — "Active Deals" tab + "By Investor" tab. Year defaults to the current year. |
 | Context (Q&A) | `/klas-report context` | Prints a plain-text snapshot — no file |
 
 **Name matching (member/deal modes):** case-insensitive partial match against `Member.Name` or `Deal.Deal_Name`.
@@ -27,6 +28,7 @@ Examples:
 - `/klas-report member "Yochay"`
 - `/klas-report deal "Ocala"`
 - `/klas-report member "kob"` (partial match — finds member real name)
+- `/klas-report active-deals 2025`
 - `/klas-report context` (or whenever the user asks a financial question)
 
 ## When to use context mode
@@ -80,6 +82,24 @@ The output is a structured plain-text snapshot with every virtual column pre-com
 4. On success: print the absolute path of the generated report.
 
 5. **Tab layout** (LLC-wide mode): Summary (rates, grand totals, per-year and per-member rollups), By Member (every payment with date/deal/term/rate/amount), By Quarter (grouped by calendar quarter, with per-member breakdown — KLAS pays withholding quarterly), By Deal (only Complete deals that triggered tax, with per-member amounts and holding-period classification).
+
+## Procedure — active-deals mode
+
+1. Confirm the user is authenticated (`node ${CLAUDE_PLUGIN_ROOT}/dist/cli.js auth status`). Same prompt as member/deal mode if not.
+
+2. Run the CLI:
+   ```bash
+   node ${CLAUDE_PLUGIN_ROOT}/dist/cli.js active-deals [year]
+   ```
+   `year` is optional — defaults to the current calendar year if omitted.
+
+3. On success: print the absolute path of the generated report.
+
+4. **Inclusion rule:** a deal is in the report if its funding span overlaps the year (funded on/before Dec 31 of that year, not closed before Jan 1), OR it paid at least one distribution during the year — even if it doesn't otherwise overlap.
+
+5. **Tab layout:**
+   - **Active Deals** — one row per deal: Deal, Status, Start Date, End Date, Total Invested, `<year>` Distributions, Non-US Withholding. Total row at bottom.
+   - **By Investor** — one section per investor (tagged `(Non-US)` where applicable), listing every deal they hold in that set: Invested, `<year>` Distributions (Total), Tax Withheld, Net After Tax, then per-distribution-event Date/Amount column pairs (as many pairs as the widest row in the sheet needs). Subtotal row per investor.
 
 ## Procedure — context mode
 
